@@ -4,7 +4,11 @@ export const Background = styled.SafeAreaView`
 flex: 1;
 background-color: #fff;
 `;
-export const Container = styled.View``;
+export const Container = styled.View`
+justify-content: center;
+align-items: center;
+flex: 1;
+`;
 
 export const InputView = styled.View`
   width: 80%;  
@@ -15,7 +19,7 @@ export const InputStyle = styled.View`
     width: 100%;
     height: 40px;
     border-radius: 15px; 
-    border-width: 1px;
+    border-width: 2px;
     box-shadow: 0 3px 1px rgba(0,0,0,0.28);
     margin-bottom:10px ;
 `;
@@ -31,8 +35,10 @@ export const ButtonLogin = styled.TouchableOpacity`
  justify-content: center;
  align-items: center;
  background-color: #000;
- box-shadow: 0 3px 1px rgba(0,0,0,0.28);
+ box-shadow: 1px 2px 2px ${Platform.OS === 'ios'? 'rgba(0,0,0,0.28)' : '#000'};
+elevation: 5;
  border-radius: 15px;
+ margin-top: 10px;
  margin-bottom:10px ;
 `;
 

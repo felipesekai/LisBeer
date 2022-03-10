@@ -17,7 +17,8 @@ const Signup = () => {
     }
 
     function handleSignup(){
-        if(name ==='' || email==='' || password ===''){
+        valitadeFields(name)
+        if(valitadeFields(name) ||  valitadeFields(email) ||  valitadeFields(password)){
             alert('A campos não preenchidos corretamente');
             return;
         }
@@ -30,6 +31,13 @@ const Signup = () => {
 
 
     }
+
+    function valitadeFields(text){
+        console.log(text.match(/^[\t]+|[ \t]+$/))
+        
+        return text.match(/^[ \t]+$/) !== null || text ===""  ? true : false
+    }
+
     return (
         <Background>
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
