@@ -5,6 +5,7 @@ import Icon from '@expo/vector-icons/MaterialIcons';
 // import { Container } from './styles';
 //componentes
 import Home from '../pages/Home';
+import User from '../pages/UserProfile';
 const Tab = createBottomTabNavigator();
 const AppRoutes = () => {
   return (
@@ -36,7 +37,7 @@ const AppRoutes = () => {
       />
       <Tab.Screen
         name='User'
-        component={Home}
+        component={User}
         options={{
           tabBarIcon: ({color, size}) => (
             <Icon name="people" size={size} color={color} />

@@ -71,7 +71,7 @@ const AuthProvider = ({ children }) => {
         await AsyncStorage.setItem("USER", JSON.stringify(user));
     }
     return (
-        <AuthContext.Provider value={{ signin, signup, loadingAuth, user }}>
+        <AuthContext.Provider value={{ signin, signup, loadingAuth, user, setUser }}>
             {children}
         </AuthContext.Provider>
     );
