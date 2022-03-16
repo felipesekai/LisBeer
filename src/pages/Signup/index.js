@@ -1,16 +1,15 @@
 import React, { useReducer, useContext } from 'react';
 import { Keyboard, Text, TextInput, Platform, TouchableWithoutFeedback, ActivityIndicator } from 'react-native';
-
 import { Container } from './styles';
 import { Background, ButtonLogin, ButtonText, InputStyle, InputTitle, InputView, LinkSignup, LinkText } from '../../styles';
 import { AuthContext } from'../../context/auth';
-import { initialState, AuthReducer } from '../../reducer/auth.reducer';
+import { initialState, AuthReducer } from '../../reducers/auth.reducer';
+import ArrowButtonBack from '../../components/ArrowButtonBack';
 
-const Signup = () => {
-    
+const Signup = ({ navigation }) => {
     const [state, dispatch] = useReducer(AuthReducer, initialState);
     const { signup, loadingAuth } = useContext(AuthContext);
-    const {name, email, password} = state;
+    const {name, email, password, repeatPassword} = state;
 
     function onChangeState(type, value) {
         dispatch({ type: type, payload: value });
@@ -21,6 +20,9 @@ const Signup = () => {
         if(valitadeFields(name) ||  valitadeFields(email) ||  valitadeFields(password)){
             alert('A campos não preenchidos corretamente');
             return;
+        }
+        if(password !== repeatPassword){
+            return alert('As senhas não conhecidem');
         }
         let user = {
             name: name,
@@ -40,6 +42,7 @@ const Signup = () => {
 
     return (
         <Background>
+            <ArrowButtonBack goBack={()=> navigation.goBack()}/>
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
                 <Container
                     behavior={Platform.OS === 'ios' ? 'padding' : ''}
@@ -75,6 +78,18 @@ const Signup = () => {
                                 value={state.password}
                                 keyboardType="numeric"
                                 onChangeText={(text) => onChangeState('setPassword',text)}
+                                secureTextEntry={true}
+                            />
+                        </InputStyle>
+
+                        <InputTitle>Repita a Senha</InputTitle>
+                        <InputStyle>
+
+                            <TextInput
+                                style={{ height: '100%', width: '100%' }}
+                                value={state.repeatPassword}
+                                keyboardType="numeric"
+                                onChangeText={(text) => onChangeState('setRepeatPassword',text)}
                                 secureTextEntry={true}
                             />
                         </InputStyle>

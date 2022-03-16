@@ -19,13 +19,13 @@ const AuthProvider = ({ children }) => {
             getUser();
     }, [])
 
-    function signin(email, password) {
+  async function signin(email, password) {
         setLoadingAuth(true);
-        firebase.auth().signInWithEmailAndPassword(email, password)
-            .then((userCredential) => {
+       await firebase.auth().signInWithEmailAndPassword(email, password)
+            .then( async (userCredential) => {
                 let uid = userCredential.user.uid
 
-                firebase.database().ref('USER').child(uid).once('value', (snapshot) => {
+               await firebase.database().ref('USER').child(uid).once('value', (snapshot) => {
                     let newUser = {
                         name: snapshot.val().name,
                         email: snapshot.val().email
@@ -41,12 +41,12 @@ const AuthProvider = ({ children }) => {
                 setLoadingAuth(false);
             })
     }
-    function signup(user) {
+   async function signup(user) {
         setLoadingAuth(true);
-        firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-            .then((snapshot) => {
+       await firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+            .then( async (snapshot) => {
                 let uid = snapshot.user.uid;
-                firebase.database().ref('USER').child(uid).set({
+               await firebase.database().ref('USER').child(uid).set({
                     name: user.name,
                     email: user.email
                 })

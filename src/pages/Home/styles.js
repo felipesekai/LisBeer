@@ -32,3 +32,16 @@ align-items: center;
 
 
 `;
+
+export const SearchInput = styled.View`
+    flex-direction:row;
+    padding: 10px;
+    width: 100%;
+    height: 40px;
+    border-radius: 15px; 
+    /* border-width: 2px; */
+    box-shadow: 0 3px 1px ${Platform.OS === 'ios'? 'rgba(0,0,0,0.28)': '#000'} ;
+    elevation: 5;
+    margin-bottom:10px ;
+    background-color: #fff;
+`;

@@ -5,7 +5,7 @@ import { Container, Logo } from './styles';
 //estilo universal
 import { Background, ButtonLogin, ButtonText, InputStyle, InputTitle, InputView, LinkSignup, LinkText } from '../../styles';
 import { AuthContext } from '../../context/auth';
-import { initialState, AuthReducer } from '../../reducer/auth.reducer';
+import { initialState, AuthReducer } from '../../reducers/auth.reducer';
 
 const Signin = ({ navigation }) => {
     const [authState, dispatch] = useReducer(AuthReducer, initialState);

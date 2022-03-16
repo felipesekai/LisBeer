@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, TextInput, ScrollView } from 'react-native';
 
-import { Container, Header, BtnSearch, ViewList } from './styles';
+import { Container, Header, BtnSearch, ViewList, SearchInput } from './styles';
 import { Background, LinkText, InputStyle, InputTitle } from '../../styles';
 import Icon from '@expo/vector-icons/MaterialIcons';
-import FlatListBeer from '../../components/FlatListBeer';
-import FlatListStore from '../../components/FlatListStore';
+import FlatListBeer from './FlatListBeer';
+import FlatListStore from './FlatListStore';
 
 const Home = () => {
   return (
@@ -13,7 +13,7 @@ const Home = () => {
       <Background>
          <ScrollView>
         <Header>
-          <InputStyle style={{ width: '80%' }}>
+          <SearchInput style={{ width: '80%' }}>
             <TextInput
               style={{ flex: 1 }}
               placeholder="Buscar"
@@ -22,7 +22,7 @@ const Home = () => {
             <BtnSearch>
               <Icon name="search" size={24} color={'black'} />
             </BtnSearch>
-          </InputStyle>
+          </SearchInput>
         </Header>
 
 

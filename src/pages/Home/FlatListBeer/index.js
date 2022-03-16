@@ -25,7 +25,7 @@ const FlatListBeer = ({ listBeers }) => {
         renderItem={({ item, index }) => (
           <Card>
             <LogoItem
-              source={require('../../assets/logo-app.png')}
+              source={require('../../../assets/logo-app.png')}
               resizeMode='contain'
             />
             <Title>{item.name}</Title>

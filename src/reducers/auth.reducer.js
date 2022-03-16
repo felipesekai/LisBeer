@@ -1,7 +1,8 @@
 const initialState = {
     name: '',
     email: '',
-    password: ''
+    password: '',
+    repeatPassword: ''
 }
 
 const AuthReducer = (state, action) => {
@@ -21,9 +22,14 @@ const AuthReducer = (state, action) => {
                 ...state,
                 password: action.payload,
             }
+        case 'setRepeatPassword':
+            return {
+                ...state,
+                repeatPassword: action.payload,
+            }
         default:
             return state
     }
 }
 
-export {initialState, AuthReducer}
+export { initialState, AuthReducer }
