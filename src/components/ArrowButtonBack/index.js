@@ -7,7 +7,7 @@ const ArrowButtonBack = ({ goBack }) => {
     return (
         <Container>
             <ButtonBack onPress={() => goBack()}>
-                <Icon name="arrow-back-ios" size={30} color="black" />
+                <Icon name="arrow-back-ios" size={30} color="#f2a951" />
             </ButtonBack>
         </Container>
 

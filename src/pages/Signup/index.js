@@ -1,7 +1,7 @@
 import React, { useReducer, useContext } from 'react';
 import { Keyboard, Text, TextInput, Platform, TouchableWithoutFeedback, ActivityIndicator } from 'react-native';
 import { Container } from './styles';
-import { Background, ButtonLogin, ButtonText, InputStyle, InputTitle, InputView, LinkSignup, LinkText } from '../../styles';
+import { Background, ButtonLogin, ButtonText, Input, InputStyle, InputTitle, InputView, LinkSignup, LinkText } from '../../styles';
 import { AuthContext } from'../../context/auth';
 import { initialState, AuthReducer } from '../../reducers/auth.reducer';
 import ArrowButtonBack from '../../components/ArrowButtonBack';
@@ -49,20 +49,18 @@ const Signup = ({ navigation }) => {
                     enabled
                 >
                     <InputView>
-                        <InputTitle>Nome</InputTitle>
+                        <InputTitle>Nome:</InputTitle>
                         <InputStyle>
-                            <TextInput
-                                style={{ height: '100%', width: '100%' }}
+                            <Input                               
                                 value={state.name}
                                 onChangeText={(text) => onChangeState('setName',text)}
                             />
 
                         </InputStyle>
 
-                        <InputTitle>Email</InputTitle>
+                        <InputTitle>Email:</InputTitle>
                         <InputStyle>
-                            <TextInput
-                                style={{ height: '100%', width: '100%' }}
+                            <Input
                                 value={state.email}
                                 keyboardType="email-address"
                                 onChangeText={(text) => onChangeState('setEmail',text)}
@@ -70,11 +68,10 @@ const Signup = ({ navigation }) => {
 
                         </InputStyle>
 
-                        <InputTitle>Senha</InputTitle>
+                        <InputTitle>Senha:</InputTitle>
                         <InputStyle>
 
-                            <TextInput
-                                style={{ height: '100%', width: '100%' }}
+                            <Input
                                 value={state.password}
                                 keyboardType="numeric"
                                 onChangeText={(text) => onChangeState('setPassword',text)}
@@ -82,11 +79,10 @@ const Signup = ({ navigation }) => {
                             />
                         </InputStyle>
 
-                        <InputTitle>Repita a Senha</InputTitle>
+                        <InputTitle>Repita a Senha:</InputTitle>
                         <InputStyle>
 
-                            <TextInput
-                                style={{ height: '100%', width: '100%' }}
+                            <Input
                                 value={state.repeatPassword}
                                 keyboardType="numeric"
                                 onChangeText={(text) => onChangeState('setRepeatPassword',text)}
@@ -99,7 +95,7 @@ const Signup = ({ navigation }) => {
                     <ButtonLogin onPress={handleSignup}>
 
                         {loadingAuth ? <ActivityIndicator size={22} color={'#fff'}/>: 
-                        <ButtonText>Cadastrar</ButtonText>}
+                        <ButtonText >Cadastrar</ButtonText>}
                         
                     </ButtonLogin>
 

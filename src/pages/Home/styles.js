@@ -32,11 +32,19 @@ align-items: center;
 
 
 `;
+export const Title = styled.Text`
+color: ${props=> props.theme.primaryColor};
+ font-size:18px;
+ letter-spacing: 1px;
+ padding: 0px 0px 5px 5px;
+ margin-left: 10px;
+
+`;
 
 export const SearchInput = styled.View`
     flex-direction:row;
     padding: 10px;
-    width: 100%;
+    width: 80%;
     height: 40px;
     border-radius: 15px; 
     /* border-width: 2px; */

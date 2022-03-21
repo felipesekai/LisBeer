@@ -6,21 +6,22 @@ import Icon from '@expo/vector-icons/MaterialIcons';
 //componentes
 import Home from '../pages/Home';
 import User from '../pages/UserProfile';
+import { useTheme } from 'styled-components';
 const Tab = createBottomTabNavigator();
 const AppRoutes = () => {
+  const theme = useTheme();
   return (
     <Tab.Navigator
-      // tabBarPosition='bottom'
-
+      
       screenOptions={{
-        // tabBarInactiveBackgroundColor:"#c4c4c4",
-        // tabBarActiveBackgroundColor:"#c4c4",
-        tabBarActiveTintColor:'#000',
+        tabBarStyle:{
+          borderTopColor:'transparent',
+          backgroundColor: theme.background,
+        },      
+        tabBarActiveTintColor:theme.primaryColor,
         headerShown:false,
-        tabBarLabelStyle:{fontSize:12}
-        // tabBarIndicatorStyle: {height: 5, borderRadius: 3, width:50, left:55},
-        // tabBarContentContainerStyle: {height: 50},
-        // tabBarLabelStyle:{fontSize: 12, fontStyle: 'normal' }
+        tabBarLabelStyle:{fontSize:12},
+        tabBarHideOnKeyboard: true,
       }}
     >
       <Tab.Screen

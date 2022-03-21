@@ -11,8 +11,6 @@ describe('test Autentication', () => {
             }).finally(() => {
                 expect(ok).toBe(201)
             })
-
-
     })
     it('should that login fail when password is not correctly', () => {
         const email = 'sekai@sekai.com'
@@ -26,9 +24,8 @@ describe('test Autentication', () => {
             .finally(() => {
                 expect(ok).toBe("auth/wrong-password")
             })
-
     })
-     it('should that login fail when email is not correctly', () => {
+    it('should that login fail when email is not correctly', () => {
         const email = 'sekai@sekaai.com'
         const password = '123456'
         var ok = 0
@@ -40,6 +37,5 @@ describe('test Autentication', () => {
             .finally(() => {
                 expect(ok).toBe("auth/user-not-found")
             })
-
     })
 })

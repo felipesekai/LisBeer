@@ -10,12 +10,12 @@ export const List = styled.FlatList``;
 
 export const Card = styled.TouchableOpacity`
 flex-direction: row;
-background-color: #fff;
-width: 140px;
-height: 70px;
+background-color: ${props=> props.theme.primaryColor};
+width: 210px;
+height: 100px;
 box-shadow: 1px 2px 2px ${Platform.OS === 'ios'? 'rgba(0,0,0,0.28)' : '#000'};
 elevation: 5;
-border-radius: 15px;
+border-radius:15px;
 justify-content: center;
 align-items: center;
 margin-left: 10px;
