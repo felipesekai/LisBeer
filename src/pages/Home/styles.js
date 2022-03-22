@@ -53,3 +53,21 @@ export const SearchInput = styled.View`
     margin-bottom:10px ;
     background-color: #fff;
 `;
+export const TitleAndFilterView = styled.View`
+    flex-direction:row;
+    /* padding: 10px; */
+    justify-content: space-between;
+    align-items: center;
+
+`;
+
+export const FilterView = styled.View`
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    width: 40%;
+    /* background-color: #fff; */
+
+`;
+

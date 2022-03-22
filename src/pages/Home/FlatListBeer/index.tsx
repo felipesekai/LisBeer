@@ -1,24 +1,34 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
 import Icon from '@expo/vector-icons/MaterialIcons';
-import { Card, Container, LogoItem, Title, Value } from './styles';
+import { Card, Container, ContainerItens, ItemTextView, LogoItem, Title, Value } from './styles';
 import { Beers } from '../../../utils/Beers';
 import { useTheme } from 'styled-components';
 
 //tipagem
 export type BeersProps = {
-  key: string;
-  title: string;
-  price: number;
-  rate: number;
-  img: string;
+  id: string;
+  name: string;
+  brand: string;
+  value: number;
+  evaluation: number;
+  photoUrl: string;
+  categories: [
+    {
+        id: string,
+        name: string,
+        evaluation: number,
+    },
+];
 }
+
 
 type Props = {
   listBeers: BeersProps[];
+  itemSelect(item: BeersProps);
 }
 
-const FlatListBeer = ({ listBeers }: Props) => {
+const FlatListBeer = ({ listBeers, itemSelect } : Props) => {
   const theme = useTheme();
 
   return (
@@ -27,23 +37,24 @@ const FlatListBeer = ({ listBeers }: Props) => {
         data={listBeers ? listBeers : Beers}
         showsHorizontalScrollIndicator={false}
         horizontal={true}
-        keyExtractor={item => item.key}
+        keyExtractor={item => item.id}
         renderItem={({ item, index }) => (
-          <Card>
-            <LogoItem
-              source={item.img ? { uri: item.img } : require('../../../assets/logo-app.png')}
-              resizeMode='contain'
-            />
-            <Title>{item.title}</Title>
+          <ContainerItens>
+            <Card onPress={() => itemSelect(item)}>
+              <LogoItem
+                source={item.photoUrl ? { uri: item.photoUrl } : require('../../../assets/logo-app.png')}
+                resizeMode='contain'
+              />
 
-            <View style={{ flexDirection: 'row', marginTop: 2 }}>
-              <Value>{"R$: " + item.price.toFixed(2)}</Value>
+            </Card>
+            <Title>{item.name}</Title>
+
+            <ItemTextView>
+              <Value>{"R$: " + item.value.toFixed(2)}</Value>
               <Icon name="star" size={14} color={theme.primaryColor} />
-              <Value>{`${item.rate}`}</Value>
-            </View>
-
-
-          </Card>
+              <Value>{`${item.evaluation}`}</Value>
+            </ItemTextView>
+          </ContainerItens>
         )}
       />
 
