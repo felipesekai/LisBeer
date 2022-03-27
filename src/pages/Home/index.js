@@ -55,10 +55,10 @@ const Home = () => {
 
   function lowestPrice(a, b) {
     {
-      if (a.value < b.value) {
+      if (a.price < b.price) {
         return -1;
       }
-      else if (a.value > b.value) {
+      else if (a.price > b.price) {
         return 1;
       }
       else {
@@ -69,10 +69,10 @@ const Home = () => {
 
   function biggestPrice(a, b) {
     {
-      if (a.value > b.value) {
+      if (a.price > b.price) {
         return -1;
       }
-      else if (a.value < b.value) {
+      else if (a.price < b.price) {
         return 1;
       }
       else {
@@ -82,7 +82,7 @@ const Home = () => {
   }
 
   function bestRate(a, b) {
-    console.log(translate('hello'))
+    // console.log(translate('hello'))
     {
       if (a.evaluation > b.evaluation) {
         return -1;

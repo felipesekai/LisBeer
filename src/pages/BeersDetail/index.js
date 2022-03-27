@@ -37,7 +37,7 @@ const BeersDetail = ({ visible, onClose, data, }) => {
              
             </ItemValuesView>
 
-            <StoreDetails id={data.storeId}/>
+            <StoreDetails id={data.storeId} itemCategories={data.categories}/>
           </Card>
         </Container>
       }
