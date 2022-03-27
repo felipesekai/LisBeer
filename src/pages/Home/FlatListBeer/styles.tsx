@@ -15,6 +15,16 @@ margin-top: 5px;
 align-items: center; */
 `;
 
+export const ItemRateView = styled.View`
+position: absolute;
+top: 5px;
+right: 5px;
+flex-direction: row;
+/* margin-bottom: 5px; */
+/* justify-content: center;
+align-items: center; */
+`;
+
 export const List = styled.FlatList``;
 
 export const Card = styled.TouchableOpacity`
@@ -23,29 +33,32 @@ width: 100px;
 height: 100px;
 box-shadow: 1px 2px 2px ${Platform.OS === 'ios'? 'rgba(0,0,0,0.28)' : '#000'};
 elevation: 5;
-/* padding: 5px; */
+border: 0.3px solid ${props=> props.theme.primaryColor};
 border-radius: 15px;
+padding: 5px;
 justify-content: center;
 align-items: center;
-margin-bottom: 10px;
+margin-bottom: 5px;
+
 `;
 
-export const LogoItem = styled.Image`
+export const ItemImage = styled.Image`
 width: 100%;
 height:100%;
-margin-bottom: 5px;
+/* margin-bottom: 5px; */
+border-radius: 15px;
 `;
 export const Title = styled.Text`
 font-size: 14px;
 color:${props=> props.theme.primaryColor};
-/* text-align: center; */
+text-align: center;
 
 `;
 export const ItemTextView = styled.View`
 flex-direction: row;
 margin-top: 2px;
 width: 100%;
-justify-content: flex-start;
+justify-content: center;
 `;
 export const Value = styled.Text`
 font-size: 10px;

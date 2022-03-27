@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, TextInput, ScrollView } from 'react-native';
-import { Title, Header, BtnSearch, SearchInput, TitleAndFilterView, FilterView, FilterTitle } from './styles';
+import { Title, Header, BtnSearch, SearchInputView, TitleAndFilterView } from './styles';
 import { Background, } from '../../styles';
-import { Picker } from '@react-native-picker/picker';
 import PickerFilter from '../../components/PickerFilter';
 import Icon from '@expo/vector-icons/MaterialIcons';
 import FlatListBeer from './FlatListBeer';
@@ -10,16 +9,33 @@ import FlatListStore from './FlatListStore';
 import { BeersPack } from '../../utils/BeersPack';
 import { Beers } from '../../utils/Beers';
 import BeersDetail from '../BeersDetail';
+import StoreDetail from '../StoreDetail';
+import { translate } from '../../locales';
+import {getAllBeers} from '../../services/api';
 const Home = () => {
-  const [item, setItem] = useState(null);
-  const [visibleModal, setVisibleModal] = useState(false);
-  const [selectedFilterBeers, setSelectedFilterBeers] = useState(2);
+  const [beersSelected, setBeersSelected] = useState(null);
+  const [storageSelected, setStorageSelected] = useState(null);
+  const [beersDetailisVisible, setBeersDetailisVisible] = useState(false);
+  const [storageDetailisVisible, setStorageDetailisVisible] = useState(false);
+  const [selectedFilterBeers, setSelectedFilterBeers] = useState(3);
   const [listBeers, setListBeers] = useState(Beers);
+  
 
-  function openModal(item) {
+  useEffect(() => {
+    getAllBeers.then((response) => {
+      // console.log(response.data);
+      setListBeers(response.data);
+
+    }).catch((err) => {
+      console.log(err);
+    }).finally(() => {
+
+    })
+  },[]);
+  function openBeersDetail(item) {
     if (item) {
-      setVisibleModal(true);
-      setItem(item);
+      setBeersDetailisVisible(true);
+      setBeersSelected(item);
     }
 
   }
@@ -66,6 +82,7 @@ const Home = () => {
   }
 
   function bestRate(a, b) {
+    console.log(translate('hello'))
     {
       if (a.evaluation > b.evaluation) {
         return -1;
@@ -80,43 +97,52 @@ const Home = () => {
   }
 
   return (
+    
+    < Background >
+    
+    <ScrollView>
+      <Header>
+        <SearchInputView>
+          <TextInput
+            style={{ flex: 1 }}
+            placeholder="Buscar"
 
-    <Background>
-      <ScrollView>
-        <Header>
-          <SearchInput>
-            <TextInput
-              style={{ flex: 1 }}
-              placeholder="Buscar"
-
-            />
-            <BtnSearch>
-              <Icon name="search" size={24} color={'black'} />
-            </BtnSearch>
-          </SearchInput>
-        </Header>
-
-
-
-        <TitleAndFilterView>
-          <Title>Em Destaques</Title>
-          
-          <PickerFilter selectedBeers={selectedFilterBeers} setBeers={hanldeFilterBeers} />
-  
-        </TitleAndFilterView>
-
-        <FlatListBeer listBeers={BeersPack} itemSelect={(item) => openModal(item)} />
-        <FlatListBeer listBeers={listBeers} itemSelect={(item) => openModal(item)} />
+          />
+          <BtnSearch>
+            <Icon name="search" size={24} color={'black'} />
+          </BtnSearch>
+        </SearchInputView>
+      </Header>
 
 
-        <Title>Lojas</Title>
-        <FlatListStore />
 
-      </ScrollView>
-      <BeersDetail visible={visibleModal}
-        onClose={() => setVisibleModal(false)}
-        data={item} />
-    </Background>
+      <TitleAndFilterView>
+        <Title>Em Destaques</Title>
+
+        <PickerFilter selectedBeers={selectedFilterBeers} setBeers={hanldeFilterBeers} />
+
+      </TitleAndFilterView>
+
+      <FlatListBeer listBeers={BeersPack} itemSelect={(item) => openBeersDetail(item)} />
+      <FlatListBeer listBeers={listBeers} itemSelect={(item) => openBeersDetail(item)} />
+
+
+      <Title>Lojas</Title>
+      <FlatListStore />
+
+    </ScrollView>
+      {/* pages */ }
+      <BeersDetail
+        visible={beersDetailisVisible}
+        onClose={() => setBeersDetailisVisible(false)}
+        data={beersSelected} />
+
+      <StoreDetail
+        visible={storageDetailisVisible}
+        onClose={() => setStorageDetailisVisible(false)}
+        data={storageSelected}
+      />
+    </Background >
 
   );
 }

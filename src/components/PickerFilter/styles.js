@@ -6,14 +6,14 @@ export const Container = styled.View`
     align-items: center;
     height: 20px;
     width: 40%;
-    /* background-color: #fff; */
+    /* background-color: #ddd; */
 `;
 
 export const ContainerIos = styled.TouchableOpacity`
 /* flex-direction:row; */
     justify-content: center;
     align-items: center;
-    height: 20px;
+    height: 30px;
     width: 40%;
     /* background-color: #fff; */
 `;

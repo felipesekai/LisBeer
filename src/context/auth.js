@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
 import firebase from '../services/FirebaseConnections';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const AuthContext = createContext({})
@@ -56,8 +56,19 @@ const AuthProvider = ({ children }) => {
                     name: user.name,
                     email: user.email
                 }
-                setUser(data);
-                saveFromStorage(data);
+                Alert.alert(
+                    "Usuario Cadastrado com sucesso",
+                    "Click em ok para ir para tela inicial",
+                    [
+                      {
+                        text: "Cancel",
+                        onPress: () => console.log("Cancel Pressed"),
+                        style: "cancel"
+                      },
+                      { text: "OK", onPress: () => saveUser(data) }
+                    ]
+                  );
+                
 
             })
             .catch((error) => {
@@ -66,12 +77,25 @@ const AuthProvider = ({ children }) => {
                 setLoadingAuth(false);
             })
     }
+    async function signOut(){
+        await firebase.auth().signOut().then(() => {
+            setUser(null);
+            deleteUserFromStorage();
+        })
+    }
+    function saveUser(data){
+        setUser(data);
+        saveFromStorage(data);
+    }
 
     async function saveFromStorage(user) {
         await AsyncStorage.setItem("USER", JSON.stringify(user));
+    }  
+     async function deleteUserFromStorage() {
+        await AsyncStorage.removeItem("USER");
     }
     return (
-        <AuthContext.Provider value={{ signin, signup, loadingAuth, user, setUser }}>
+        <AuthContext.Provider value={{ signin, signup,signOut, loadingAuth, user, setUser }}>
             {children}
         </AuthContext.Provider>
     );

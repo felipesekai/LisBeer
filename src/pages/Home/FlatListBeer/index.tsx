@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, FlatList } from 'react-native';
 import Icon from '@expo/vector-icons/MaterialIcons';
-import { Card, Container, ContainerItens, ItemTextView, LogoItem, Title, Value } from './styles';
+import { Card, Container, ContainerItens, ItemTextView, 
+  ItemImage, Title, Value, ItemRateView } from './styles';
 import { Beers } from '../../../utils/Beers';
 import { useTheme } from 'styled-components';
+import { getAllBeers } from '../../../services/api';
 
 //tipagem
 export type BeersProps = {
   id: string;
   name: string;
   brand: string;
-  value: number;
+  price: number;
   evaluation: number;
   photoUrl: string;
   categories: [
@@ -41,18 +43,23 @@ const FlatListBeer = ({ listBeers, itemSelect } : Props) => {
         renderItem={({ item, index }) => (
           <ContainerItens>
             <Card onPress={() => itemSelect(item)}>
-              <LogoItem
+              <ItemImage                
                 source={item.photoUrl ? { uri: item.photoUrl } : require('../../../assets/logo-app.png')}
                 resizeMode='contain'
               />
 
+              <ItemRateView>
+              <Icon name="star" size={14} color={theme.primaryColor} />
+              <Value>{`${item.evaluation.toFixed(1)}`}</Value>
+              </ItemRateView>
+
             </Card>
+            
             <Title>{item.name}</Title>
 
             <ItemTextView>
-              <Value>{"R$: " + item.value.toFixed(2)}</Value>
-              <Icon name="star" size={14} color={theme.primaryColor} />
-              <Value>{`${item.evaluation}`}</Value>
+              <Value>{"R$: " + item.price.toFixed(2)}</Value>
+             
             </ItemTextView>
           </ContainerItens>
         )}

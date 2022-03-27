@@ -2,8 +2,11 @@ import React from 'react';
 import { View, FlatList } from 'react-native';
 import Icon from "@expo/vector-icons/MaterialIcons";
 import { Card, Container, List, LogoItem, Title, ViewStoreTitle } from './styles';
+import { Props } from '../../../utils/StoreType/storeType';
 
-const FlatListStore = ({ listBeers }) => {
+
+
+const FlatListStore = ({ listStores }) => {
 
   const list = [
     { key: 1, name: 'Loja 1', value: 6.75 },

@@ -5,6 +5,8 @@ export const Container = styled.SafeAreaView`
 align-items: center;
 flex: 1;
 background-color: ${props=> props.theme.background};
+
+
 `;
 
 export const Header = styled.View`

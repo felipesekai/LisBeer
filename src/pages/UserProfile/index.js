@@ -5,12 +5,11 @@ import { AuthContext } from '../../context/auth';
 // import { Container } from './styles';
 
 const UserProfile = () => {
-    const { setUser } = useContext(AuthContext);
+    const { signOut } = useContext(AuthContext);
     function handleLogout() {
-        setUser(null);
+        signOut();
     }
     return (
-
         <Background>
             <Container>
                 <ButtonLogin onPress={handleLogout}>

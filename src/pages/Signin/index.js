@@ -25,7 +25,7 @@ const Signin = ({ navigation }) => {
     }
 
     function valitadeFields(text) {
-        console.log(text.match(/^[\t]+|[ \t]+$/))
+        // console.log(text.match(/^[\t]+|[ \t]+$/))
 
         return text.match(/^[ \t]+$/) !== null || text === "" ? true : false
     }
@@ -40,7 +40,7 @@ const Signin = ({ navigation }) => {
                 >
                     <ViewLogo>
                         <Logo
-                            source={require('../../assets/logo-lisbeer.png')}
+                            source={require('../../assets/logo-lisbeerx.png')}
                             resizeMode='contain'
                         />
                     </ViewLogo>

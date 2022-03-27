@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Modal, View, Text, TouchableOpacity, } from 'react-native';
 import Icon from '@expo/vector-icons/MaterialIcons';
 import { ButtonBack, Card, Container, Header, ItemImg, ItemName, ItemText, ItemValuesView } from './styles';
 import { useTheme } from 'styled-components';
-import { getStoreById } from '../../services/api';
-import StoreDetails from './StoreDetails';
-const BeersDetail = ({ visible, onClose, data, }) => {
+
+const StoreDetail = ({ visible, onClose, data, }) => {
 
   const theme = useTheme();
 
@@ -30,14 +29,11 @@ const BeersDetail = ({ visible, onClose, data, }) => {
           <Card>
             <ItemName>{data && data.name}</ItemName>
             <ItemValuesView>
-              <ItemText>Preço: {data.price.toFixed(2)}</ItemText>
+              <ItemText>Preço: {data.value.toFixed(2)}</ItemText>
               <ItemText> | </ItemText>
               <Icon name="star" size={17} color={theme.background} />
               <ItemText> {data.evaluation.toFixed(1)}</ItemText>
-             
             </ItemValuesView>
-
-            <StoreDetails id={data.storeId}/>
           </Card>
         </Container>
       }
@@ -46,4 +42,4 @@ const BeersDetail = ({ visible, onClose, data, }) => {
   );
 }
 
-export default BeersDetail;
+export default StoreDetail;
