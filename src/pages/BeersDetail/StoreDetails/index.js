@@ -4,51 +4,51 @@ import { getStoreById } from '../../../services/api';
 import FlatListCategories from '../FlatListCategories';
 import FlatListOtherItens from '../FlatListOtherItens';
 
-import { ItemText, ItemName, ItemImg, ItemValuesView } from '../styles';
-import { Container, TitleOtherItens } from './styles';
+import { ItemText, ItemName, ItemImg, RateViewRow,  } from '../styles';
+import { Container, TitleOtherItens, StoreContent, Title } from './styles';
 
 const StoreDetails = ({ id, itemCategories }) => {
     const [store, setStore] = useState({});
     const [listBeers, setListBeers] = useState([]);
     const [listCategories, setListCategories] = useState([]);
-    useEffect( () => {
-        async function getStore(){
+    useEffect(() => {
+        async function getStore() {
             if (id) {
                 try {
                     const response = await getStoreById(id);
 
-                    if(response.status === 200){
+                    if (response.status === 200) {
                         setStore(response.data);
                         setListBeers(response.data.beers);
                         // setListCategories(response.data.beers);
                         // console.log(response.data.beers)
                     }
-                }catch (e) {
-
+                } catch (e) {
+                        alert("Tivemos algum problema para carregar os dados")
                 }
-              
+
             }
         }
         getStore()
-        
+
 
     }, [])
 
 
     return (
         <Container>
+            <FlatListCategories categories={itemCategories} />
             {store &&
-             <View>
-             <ItemText>{"Loja : "+store.fantasyName}</ItemText>
-             <ItemText>{store.email}</ItemText>
-             
-             </View>
+                <StoreContent>
+                    <Title>{store.fantasyName}</Title>
+                    <ItemText>{store.email}</ItemText>
+                </StoreContent>
             }
 
-            <FlatListCategories categories={itemCategories}/>
+
 
             <TitleOtherItens>Outros itens da loja</TitleOtherItens>
-           <FlatListOtherItens listBeers={listBeers} />
+            <FlatListOtherItens listBeers={listBeers} />
         </Container>
     )
         ;

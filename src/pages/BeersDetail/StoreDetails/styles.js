@@ -13,4 +13,16 @@ margin-top:10px;
 font-weight: bold;
 `;
 
+export const Title = styled.Text`
+color: ${props => props.theme.background};
+font-size: 16px;
+margin-top:10px;
+font-weight: bold;
+`;
+
+export const StoreContent = styled.View`
+margin: 10px 0;
+`;
+
+
 

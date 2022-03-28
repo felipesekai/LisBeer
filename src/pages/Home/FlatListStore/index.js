@@ -8,33 +8,22 @@ import { Props } from '../../../utils/StoreType/storeType';
 
 const FlatListStore = ({ listStores }) => {
 
-  const list = [
-    { key: 1, name: 'Loja 1', value: 6.75 },
-    { key: 2, name: 'Loja 2', value: 6.75 },
-    { key: 3, name: 'Loja 3', value: 6.75 },
-    { key: 4, name: 'Loja 4', value: 6.75 },
-    { key: 5, name: 'Loja 5', value: 6.75 },
-    { key: 6, name: 'Loja 6', value: 6.75 },
-    { key: 7, name: 'Loja 7', value: 6.75 },
-
-  ]
   return (
     <Container>
       <FlatList
-        data={list}
+        data={listStores}
         showsHorizontalScrollIndicator={false}
         horizontal={true}
-        keyExtractor={(item) => item.key}
+        keyExtractor={(item) => item.id}
         renderItem={({ item, index }) => (
-          <Card>
-            <Icon name="store" size={40} color={'#000000'}/>
-            {/* <LogoItem
-              source={require('../../assets/logo-app.png')}
+          <Card>           
+            <LogoItem
+              source={{uri:item.photoUrl }}
               resizeMode='contain'
-            /> */}
+            />
             <ViewStoreTitle>
-            <Title>{item.name}</Title>
-            <Title>{item.name}</Title>
+            <Title>{item.fantasyName}</Title>
+            <Title>{item.email}</Title>
             </ViewStoreTitle>
           </Card>
         )}

@@ -11,7 +11,7 @@ import { Beers } from '../../utils/Beers';
 import BeersDetail from '../BeersDetail';
 import StoreDetail from '../StoreDetail';
 import { translate } from '../../locales';
-import {getAllBeers} from '../../services/api';
+import {getAllBeers, getAllStore} from '../../services/api';
 const Home = () => {
   const [beersSelected, setBeersSelected] = useState(null);
   const [storageSelected, setStorageSelected] = useState(null);
@@ -19,6 +19,7 @@ const Home = () => {
   const [storageDetailisVisible, setStorageDetailisVisible] = useState(false);
   const [selectedFilterBeers, setSelectedFilterBeers] = useState(3);
   const [listBeers, setListBeers] = useState(Beers);
+  const [listStores, setListStores] = useState();
   
 
   useEffect(() => {
@@ -30,8 +31,20 @@ const Home = () => {
       console.log(err);
     }).finally(() => {
 
-    })
+    });
+
+    getStore()
+  
   },[]);
+
+  function getStore(){
+    getAllStore.then((response) => {
+      setListStores(response.data);
+    })
+    .catch((err) => {}).finally(() => {
+      //loading
+    })
+  }
   function openBeersDetail(item) {
     if (item) {
       setBeersDetailisVisible(true);
@@ -128,7 +141,7 @@ const Home = () => {
 
 
       <Title>Lojas</Title>
-      <FlatListStore />
+      <FlatListStore listStores={listStores} />
 
     </ScrollView>
       {/* pages */ }

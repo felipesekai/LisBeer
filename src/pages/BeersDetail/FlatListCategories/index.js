@@ -4,7 +4,7 @@ import { FlatList, View } from 'react-native';
 import { Card, Container, Title } from './styles';
 
 const FlatListCategories = ({ categories }) => {
-    console.log(categories)
+    // console.log(categories)
     return (
         <Container>
 

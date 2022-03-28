@@ -13,4 +13,5 @@ const api = axios.create({
 
 export const getAllBeers = api.get('beers');
 export const getStoreById = id => api.get(`stores/${id}`);
+export const getAllStore = api.get(`stores`);
 

@@ -10,8 +10,9 @@ export const List = styled.FlatList``;
 
 export const Card = styled.TouchableOpacity`
 flex-direction: row;
+padding: 10px;
 background-color: ${props=> props.theme.primaryColor};
-width: 210px;
+/* width: 210px; */
 height: 100px;
 box-shadow: 1px 2px 2px ${Platform.OS === 'ios'? 'rgba(0,0,0,0.28)' : '#000'};
 elevation: 5;
@@ -30,9 +31,9 @@ margin-bottom: 5px;
 export const ViewStoreTitle = styled.View`
 padding: 10px;
 justify-content: center;
-align-items: center;
+/* align-items: center; */
 `;
 export const Title = styled.Text`
-font-size: 14px;
+font-size: 16px;
 color: #000;
 `;

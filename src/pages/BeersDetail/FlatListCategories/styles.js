@@ -1,18 +1,16 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-    width: 100%;
-    height: 15%;
+    width: 100%;  
     margin-top:5px;
 `;
 
 export const Card = styled.View`
     padding: 10px;
-    margin: 5px;
-    height: 86%;
+    margin: 5px 5px;
     justify-content: center;
     align-items: center;
-    border-radius: 15px;
+    border-radius: 7px;
     background-color: ${props => props.theme.primaryColor};
     box-shadow: 1px 3px 1px ${Platform.OS === 'ios' ? 'rgba(0,0,0,0.28)' : '#000'};
     elevation: 5;
