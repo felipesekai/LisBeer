@@ -6,7 +6,7 @@ import { Props } from '../../../utils/StoreType/storeType';
 
 
 
-const FlatListStore = ({ listStores }) => {
+const FlatListStore = ({ listStores, itemSelect }) => {
 
   return (
     <Container>
@@ -16,7 +16,7 @@ const FlatListStore = ({ listStores }) => {
         horizontal={true}
         keyExtractor={(item) => item.id}
         renderItem={({ item, index }) => (
-          <Card>           
+          <Card onPress={() =>itemSelect(item)}>           
             <LogoItem
               source={{uri:item.photoUrl }}
               resizeMode='contain'

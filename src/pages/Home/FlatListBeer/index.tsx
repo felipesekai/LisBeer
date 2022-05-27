@@ -30,6 +30,12 @@ type Props = {
   itemSelect(item: BeersProps);
 }
 
+function convert(value) {
+  return value
+  //   .replace(/[^\d,]+/g, '') // Remove caracteres desnecessários.
+    .replace('.', ',');      // Troca o separador decimal (`.` -> `,`)
+}
+
 const FlatListBeer = ({ listBeers, itemSelect } : Props) => {
   const theme = useTheme();
 
@@ -58,7 +64,7 @@ const FlatListBeer = ({ listBeers, itemSelect } : Props) => {
             <Title>{item.name}</Title>
 
             <ItemTextView>
-              <Value>{"R$: " + item.price.toFixed(2)}</Value>
+              <Value>{"R$: " + convert(item.price.toFixed(2))}</Value>
              
             </ItemTextView>
           </ContainerItens>

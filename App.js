@@ -4,6 +4,8 @@ import Routes from './src/routes';
 import { NavigationContainer } from '@react-navigation/native';
 import { AuthProvider } from './src/context/auth';
 import { ThemeProvider } from 'styled-components';
+import { QueryClientProvider } from 'react-query';
+import { queryClient } from './src/services/queryClient';
 import themes from './src/themes';
 
 LogBox.ignoreLogs([
@@ -20,7 +22,9 @@ export default function App() {
      <AuthProvider>
        <ThemeProvider theme={theme}>
       <StatusBar/>
+      <QueryClientProvider client={queryClient}>
       <Routes/>
+      </QueryClientProvider>
       </ThemeProvider>
       </AuthProvider>
       </NavigationContainer>

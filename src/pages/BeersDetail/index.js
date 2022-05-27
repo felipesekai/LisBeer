@@ -9,6 +9,11 @@ const BeersDetail = ({ visible, onClose, data, }) => {
 
   const theme = useTheme();
 
+  function convert(value) {
+    return value
+    //   .replace(/[^\d,]+/g, '') // Remove caracteres desnecessários.
+      .replace('.', ',');      // Troca o separador decimal (`.` -> `,`)
+  }
   return (
     <Modal animationType='slide' visible={visible} onRequestClose={() => onClose()}>
 
@@ -37,10 +42,10 @@ const BeersDetail = ({ visible, onClose, data, }) => {
             </RateViewRow>
             </TitleRateViewRow>
             <ItemText>{data.brand}</ItemText>
-            <ItemText>Preço: {data.price.toFixed(2)}</ItemText>
+            <ItemText>R$: {convert(data.price.toFixed(2))}</ItemText>
             </HeaderBeersView>
 
-            <StoreDetails id={data.storeId} itemCategories={data.categories}/>
+            <StoreDetails id={data.storeId} itemCategories={data.categories} beerId={data.id}/>
           </Card>
         </Container>
       }

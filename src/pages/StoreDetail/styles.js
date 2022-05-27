@@ -12,7 +12,7 @@ background-color: ${props=> props.theme.background};
 export const Header = styled.View`
 width: 100%;
 height:25%;
-padding: 10px;
+/* padding: 10px; */
 `;
 
 export const ButtonBack = styled.TouchableOpacity`
@@ -26,7 +26,7 @@ height: 30px;
 
 export const ItemImg = styled.Image`
 width: 100%;
-height:100%;
+height:120%;
 
 `;
 
@@ -42,6 +42,20 @@ border-top-right-radius: 25px;
 align-items: center;
 `;
 
+export const CardContainer = styled.View`
+width: 90%;
+margin: 10px 5px;
+/* background-color: ${props=> props.theme.secondaryColor}; */
+
+`;
+export const ListContainer = styled.KeyboardAvoidingView`
+width: 90%;
+margin: 10px 5px;
+height: 40%;
+/* background-color: ${props=> props.theme.secondaryColor}; */
+
+`;
+
 
 export const ItemName = styled.Text`
 font-size: 22px;
@@ -51,19 +65,22 @@ color: ${props=> props.theme.buttonTextColor};
 
 `;
 
-export const ItemValuesView = styled.View`
+export const ViewRow = styled.View`
 flex-direction: row;
 align-items: center;
 /* padding: 10px; */
-margin-top: 5px;
+/* margin-top: 5px; */
 
 `;
 
+export const ItemTextBold = styled.Text`
+font-size: 16px;
+font-weight: bold;
+color: ${props=> props.theme.buttonTextColor};
 
+`;
 export const ItemText = styled.Text`
 font-size: 16px;
 color: ${props=> props.theme.buttonTextColor};
 
 `;
-
-

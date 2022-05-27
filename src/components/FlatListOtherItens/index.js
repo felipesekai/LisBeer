@@ -3,6 +3,12 @@ import { FlatList, View, Image} from 'react-native';
 
 import { Card, Container, ItemName, ItemPrice, ItemImage, ItemTextView } from './styles';
 
+function convert(value) {
+    return value
+    //   .replace(/[^\d,]+/g, '') // Remove caracteres desnecessários.
+      .replace('.', ',');      // Troca o separador decimal (`.` -> `,`)
+  }
+
 const FlatListOtherItens = ({ listBeers }) => {
     return (
         <Container>
@@ -17,7 +23,7 @@ const FlatListOtherItens = ({ listBeers }) => {
                         />
                         <ItemTextView>
                         <ItemName>{item.name}</ItemName>
-                        <ItemPrice>{item.price.toFixed(2)}</ItemPrice>
+                        <ItemPrice>{convert(item.price.toFixed(2))}</ItemPrice>
                         </ItemTextView>
                        
                     </Card>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, ScrollView } from 'react-native';
+import { View, TextInput, ScrollView, ActivityIndicator } from 'react-native';
 import { Title, Header, BtnSearch, SearchInputView, TitleAndFilterView } from './styles';
 import { Background, } from '../../styles';
 import PickerFilter from '../../components/PickerFilter';
@@ -11,6 +11,7 @@ import { Beers } from '../../utils/Beers';
 import BeersDetail from '../BeersDetail';
 import StoreDetail from '../StoreDetail';
 import { translate } from '../../locales';
+import { useQuery } from "react-query";
 import {getAllBeers, getAllStore} from '../../services/api';
 const Home = () => {
   const [beersSelected, setBeersSelected] = useState(null);
@@ -20,6 +21,7 @@ const Home = () => {
   const [selectedFilterBeers, setSelectedFilterBeers] = useState(3);
   const [listBeers, setListBeers] = useState(Beers);
   const [listStores, setListStores] = useState();
+
   
 
   useEffect(() => {
@@ -38,6 +40,9 @@ const Home = () => {
   },[]);
 
   function getStore(){
+
+    
+
     getAllStore.then((response) => {
       setListStores(response.data);
     })
@@ -109,6 +114,14 @@ const Home = () => {
     }
   }
 
+  function openStoreDetail(item) {
+    if (item) {
+      setStorageDetailisVisible(true);
+      setStorageSelected(item);
+    }
+
+  }
+
   return (
     
     < Background >
@@ -135,13 +148,15 @@ const Home = () => {
         <PickerFilter selectedBeers={selectedFilterBeers} setBeers={hanldeFilterBeers} />
 
       </TitleAndFilterView>
-
+      
       <FlatListBeer listBeers={BeersPack} itemSelect={(item) => openBeersDetail(item)} />
+      {/* {isFetching? <ActivityIndicator size={30}/> : */}
       <FlatListBeer listBeers={listBeers} itemSelect={(item) => openBeersDetail(item)} />
-
+      
+      {/* } */}
 
       <Title>Lojas</Title>
-      <FlatListStore listStores={listStores} />
+      <FlatListStore listStores={listStores} itemSelect={(item) => openStoreDetail(item)}/>
 
     </ScrollView>
       {/* pages */ }
