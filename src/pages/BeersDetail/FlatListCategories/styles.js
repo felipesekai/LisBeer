@@ -5,7 +5,7 @@ export const Container = styled.View`
     margin-top:5px;
 `;
 
-export const Card = styled.View`
+export const Card = styled.TouchableOpacity`
     padding: 10px;
     margin: 5px 5px;
     justify-content: center;

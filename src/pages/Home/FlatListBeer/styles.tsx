@@ -1,18 +1,16 @@
 import styled from 'styled-components/native';
+
 export const Container = styled.View`
-/* padding: 5px; */
 justify-content: center;
 align-items: center;
+margin-right: 10px;
+/* background-color: ${props=> props.theme.secondaryColor}; */
 flex: 1;
 `;
 export const ContainerItens = styled.View`
 padding: 5px;
 width: 100px;
-margin-left: 10px;
-margin-top: 5px;
-/* margin-bottom: 5px; */
-/* justify-content: center;
-align-items: center; */
+margin: 1px 5px 0 2px;
 `;
 
 export const ItemRateView = styled.View`
@@ -39,7 +37,7 @@ padding: 5px;
 justify-content: center;
 align-items: center;
 margin-bottom: 5px;
-
+margin-right: 5px;
 `;
 
 export const ItemImage = styled.Image`

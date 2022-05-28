@@ -65,15 +65,16 @@ height: 100%;
 export const TitleRateViewRow = styled.View`
 flex-direction: row;
 align-items: center;
-width: 90%;
+width: 100%;
 /* padding: 10px; */
 justify-content:space-between;
 `;
 
 export const HeaderBeersView = styled.View`
-    width: 100%;
-    margin: 15px 0 0 30px;
-    height: 60px;
+    width:90%;
+    margin: 15px 0 0 0px;
+    /* background-color: ${props => props.theme.secondaryColor}; */
+    /* height: 60px; */
 `;
 
 

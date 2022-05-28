@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, ScrollView, ActivityIndicator } from 'react-native';
-import { Title, Header, BtnSearch, SearchInputView, TitleAndFilterView } from './styles';
+import { Title, Header, BtnSearch, SearchInputView, TitleAndFilterView, ContainerList } from './styles';
 import { Background, } from '../../styles';
 import PickerFilter from '../../components/PickerFilter';
 import Icon from '@expo/vector-icons/MaterialIcons';
@@ -149,9 +149,13 @@ const Home = () => {
 
       </TitleAndFilterView>
       
+      <ContainerList>
       <FlatListBeer listBeers={BeersPack} itemSelect={(item) => openBeersDetail(item)} />
+      </ContainerList>
       {/* {isFetching? <ActivityIndicator size={30}/> : */}
+      <ContainerList>
       <FlatListBeer listBeers={listBeers} itemSelect={(item) => openBeersDetail(item)} />
+      </ContainerList>
       
       {/* } */}
 

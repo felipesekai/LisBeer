@@ -27,7 +27,7 @@ const BeersDetail = ({ visible, onClose, data, }) => {
               resizeMode='contain'
             />
             <ButtonBack onPress={() => onClose()}>
-              <Icon name="arrow-back-ios" size={30} color="#f2a951" />
+              <Icon name="arrow-back-ios" size={30} color={theme.primaryColor} />
             </ButtonBack>
 
           </Header>

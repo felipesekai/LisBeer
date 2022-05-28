@@ -23,7 +23,7 @@ const FlatListOtherItens = ({ listBeers }) => {
                         />
                         <ItemTextView>
                         <ItemName>{item.name}</ItemName>
-                        <ItemPrice>{convert(item.price.toFixed(2))}</ItemPrice>
+                        <ItemPrice>R$: {convert(item.price.toFixed(2))}</ItemPrice>
                         </ItemTextView>
                        
                     </Card>

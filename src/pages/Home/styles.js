@@ -60,6 +60,10 @@ export const TitleAndFilterView = styled.View`
     align-items: center;
 
 `;
+export const ContainerList = styled.View`
+  /* width: 100%; */
+  /* margin: 5px 5px; */
+`;
 
 export const FilterView = styled.View`
     flex-direction:row;
