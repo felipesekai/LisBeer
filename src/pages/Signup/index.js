@@ -25,7 +25,7 @@ const Signup = ({ navigation }) => {
             return alert('As senhas não conhecidem');
         }
         let user = {
-            name: name,
+            username: name,
             email: email,
             password: password
         }
@@ -36,7 +36,7 @@ const Signup = ({ navigation }) => {
 
     function valitadeFields(text){
         // console.log(text.match(/^[\t]+|[ \t]+$/))
-        
+
         return text.match(/^[ \t]+$/) !== null || text ===""  ? true : false
     }
 
@@ -51,7 +51,7 @@ const Signup = ({ navigation }) => {
                     <InputView>
                         <InputTitle>Nome:</InputTitle>
                         <InputStyle>
-                            <Input                               
+                            <Input
                                 value={state.name}
                                 onChangeText={(text) => onChangeState('setName',text)}
                             />
@@ -94,9 +94,9 @@ const Signup = ({ navigation }) => {
 
                     <ButtonLogin onPress={handleSignup}>
 
-                        {loadingAuth ? <ActivityIndicator size={22} color={'#fff'}/>: 
+                        {loadingAuth ? <ActivityIndicator size={22} color={'#fff'}/>:
                         <ButtonText >Cadastrar</ButtonText>}
-                        
+
                     </ButtonLogin>
 
 
