@@ -18,6 +18,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: "yarn"
+      - run: npm install expo-cli
       - run: yarn
       - run: yarn build --if-present
       # - run: yarn test
