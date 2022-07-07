@@ -6,6 +6,9 @@ on:
 
 env:
   NODE_VERSION: 16.x
+  APP_KEY_ALIAS: ${{ secrets.APP_KEY_ALIAS }}
+  APP_STORE_PASSWORD: ${{ secrets.APP_STORE_PASSWOR }}
+  APP_KEY_PASSWORD: ${{ secrets.APP_KEY_PASSWORD }}
 
 jobs:
   build:
@@ -20,5 +23,6 @@ jobs:
           cache: "yarn"
       - run: npm install expo-cli
       - run: yarn
-      - run: yarn build
+      - run: |
+          cd android && ./gradlew assembleRelease
       # - run: yarn test
