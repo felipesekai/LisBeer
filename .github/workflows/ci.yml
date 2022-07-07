@@ -21,7 +21,6 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: "yarn"
-      - run: npm install expo-cli
       - run: yarn
       - run: |
           cd android && ./gradlew assembleRelease
