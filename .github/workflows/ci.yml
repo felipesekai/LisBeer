@@ -1,27 +1,57 @@
-name: Node.js CI
+# name: Node.js CI
+
+# on:
+#   pull_request:
+#     branches: ["master"]
+
+# env:
+#   NODE_VERSION: 16.x
+#   APP_KEY_ALIAS: ${{ secrets.APP_KEY_ALIAS }}
+#   APP_STORE_PASSWORD: ${{ secrets.APP_STORE_PASSWORD }}
+#   APP_KEY_PASSWORD: ${{ secrets.APP_KEY_PASSWORD }}
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - uses: actions/checkout@v3
+#       - name: Use Node.js ${{ env.NODE_VERSION }}
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: ${{ env.NODE_VERSION }}
+#           cache: "yarn"
+#       - run: yarn
+#       - run: |
+#           cd android && ./gradlew assembleRelease
+# - run: yarn test
 
 on:
-  pull_request:
-    branches: ["master"]
-
-env:
-  NODE_VERSION: 16.x
-  APP_KEY_ALIAS: ${{ secrets.APP_KEY_ALIAS }}
-  APP_STORE_PASSWORD: ${{ secrets.APP_STORE_PASSWORD }}
-  APP_KEY_PASSWORD: ${{ secrets.APP_KEY_PASSWORD }}
-
+  push:
+    branches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v3
+      - name: 🏗 Setup repo
+        uses: actions/checkout@v2
+
+      - name: 🏗 Setup Node
+        uses: actions/setup-node@v2
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: "yarn"
-      - run: yarn
-      - run: |
-          cd android && ./gradlew assembleRelease
-      # - run: yarn test
+          node-version: 16.x
+          cache: yarn
+
+      - name: 🏗 Setup Expo and EAS
+        uses: expo/expo-github-action@v7
+        with:
+          expo-version: latest
+          eas-version: latest
+          token: ${{ secrets.AUTH_TOKEN }}
+
+      - name: 📦 Install dependencies
+        run: yarn install
+
+      - name: 🚀 Build app
+        run: eas build --non-interactive

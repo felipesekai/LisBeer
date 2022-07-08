@@ -1,14 +1,7 @@
 import axios from "axios";
 import { useQuery } from 'react-query';
 import base64 from 'react-native-base64';
-// import { authApi } from "../../.envi/enviConfig";
-export const authApi = {
-    username: 'user',
-    password: 'password'
-}
-const { username, password } = authApi
 
-const authHeader = 'Basic ' + base64.encode(`${username}:${password}`);
 
 const api = axios.create({
     // baseURL: "https://lis-beer-api.herokuapp.com",
@@ -31,7 +24,14 @@ export const getAllStore = auth => api.get(`stores`, {
     }
 });
 export const SignIn = (email, password) => api.post(`users/signin`, JSON.stringify({ email, password }));
-export const SignUp = user => api.post(`users/signup`, JSON.stringify(user));
+
+export const SignUp = (user) => api.post(`users/signup`, JSON.stringify(user),
+    {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+);
 
 export const getMe = auth => api.get('users/me', {
     headers: {
