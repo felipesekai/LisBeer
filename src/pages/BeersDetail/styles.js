@@ -55,11 +55,6 @@ flex-direction: row;
 align-items: center;
 justify-content: center;
 height: 100%;
-/* display: flex; */
-/* background-color: #ddd; */
-/* padding: 10px; */
-
-
 `;
 
 export const TitleRateViewRow = styled.View`

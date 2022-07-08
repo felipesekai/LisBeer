@@ -48,7 +48,7 @@ export const SearchInputView = styled.View`
     height: 40px;
     border-radius: 15px; 
     /* border-width: 2px; */
-    box-shadow: 0 3px 1px ${Platform.OS === 'ios'? 'rgba(0,0,0,0.28)': '#000'} ;
+    box-shadow: 0 3px 1px ${Platform.OS === 'ios'? 'rgba(0,0,0,0.28)': '#000'} ; 
     elevation: 5;
     margin-bottom:10px ;
     background-color: ${props=> props.theme.secondaryColor};
@@ -66,6 +66,15 @@ export const ContainerList = styled.View`
 `;
 
 export const FilterView = styled.View`
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    width: 40%;
+    /* background-color: #fff; */
+
+`;
+export const Teste = styled.TouchableOpacity`
     flex-direction:row;
     justify-content: center;
     align-items: center;
