@@ -1,8 +1,11 @@
 import axios from "axios";
 import { useQuery } from 'react-query';
 import base64 from 'react-native-base64';
-import { authApi } from "../../.envi/enviConfig";
-
+// import { authApi } from "../../.envi/enviConfig";
+export const authApi = {
+    username: 'user',
+    password: 'password'
+}
 const { username, password } = authApi
 
 const authHeader = 'Basic ' + base64.encode(`${username}:${password}`);
@@ -13,25 +16,25 @@ const api = axios.create({
 });
 
 export const getAllBeers = auth => api.get('beers', {
-    headers:{
+    headers: {
         "authorization": auth
     }
 });
 export const getStoreById = (auth, id) => api.get(`stores/${id}`, {
-    headers:{
+    headers: {
         "authorization": auth
     }
 });
 export const getAllStore = auth => api.get(`stores`, {
-    headers:{
+    headers: {
         "authorization": auth
     }
 });
-export const SignIn = (email, password) => api.post(`users/signin`, JSON.stringify({email, password}));
+export const SignIn = (email, password) => api.post(`users/signin`, JSON.stringify({ email, password }));
 export const SignUp = user => api.post(`users/signup`, JSON.stringify(user));
 
-export const getMe = auth => api.get('users/me',{
-    headers:{
+export const getMe = auth => api.get('users/me', {
+    headers: {
         "authorization": auth
     }
 });
