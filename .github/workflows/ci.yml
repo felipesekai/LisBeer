@@ -53,4 +53,4 @@ jobs:
         run: yarn install
 
       - name: 🚀 Build app
-        run: expo build:android
+        run: eas build --platform android

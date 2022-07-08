@@ -1,6 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { View, Alert } from 'react-native';
-import firebase from '../services/FirebaseConnections';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getMe, SignIn, SignUp } from "../services/api";
 
