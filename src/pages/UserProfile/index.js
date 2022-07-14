@@ -33,7 +33,7 @@ const UserProfile = () => {
                     uri: "https://images.unsplash.com/photo-1510771463146-e89e6e86560e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80"
                 }}>S</Avatar>
                 <Heading mt={5}>{user ? user.name : 'Mr Caramelo'}</Heading>
-                <Text fontSize={['sm', 'md']}>email: {user ? user.email : 'MrCaramelo@dogdog.com'}</Text>
+                <Text fontSize={['sm', 'md']}>{user ? user.email : 'MrCaramelo@dogdog.com'}</Text>
                 <ButtonLogin onPress={handleLogout}>
                     <ButtonText>
                         Sair
