@@ -24,20 +24,22 @@ height: 30px;
 
 export const ItemImg = styled.Image`
 width: 100%;
-height:100%;
+height:25%;
+position: absolute;
+top: 0;
 
 `;
 
 export const Card = styled.View`
-height: 100%;
+/* height: 80%; */
 width: 100%;
-box-shadow: 1px 3px 1px ${Platform.OS === 'ios' ? 'rgba(0,0,0,0.28)' : "#000"};
+/* box-shadow: 1px 3px 1px ${Platform.OS === 'ios' ? 'rgba(0,0,0,0.28)' : "#000"};
 elevation: 5;
 background-color: ${props => props.theme.primaryColor};
 border-top-left-radius: 25px;
-border-top-right-radius: 25px;
-/* justify-content: center; */
-align-items: center;
+border-top-right-radius: 25px;*/
+/* justify-content: space-between; */
+align-items: center;  
 `;
 
 
@@ -55,11 +57,6 @@ flex-direction: row;
 align-items: center;
 justify-content: center;
 height: 100%;
-/* display: flex; */
-/* background-color: #ddd; */
-/* padding: 10px; */
-
-
 `;
 
 export const TitleRateViewRow = styled.View`

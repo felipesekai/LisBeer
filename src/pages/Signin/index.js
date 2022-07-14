@@ -3,12 +3,15 @@ import { View, Keyboard, TextInput, Platform, TouchableWithoutFeedback, Activity
 
 import { Container, Logo, ViewContents, ViewLogo } from './styles';
 //estilo universal
-import { Background, ButtonLogin, ButtonText, InputStyle, InputTitle, InputView, LinkSignup, LinkText, Input } from '../../styles';
+import { Background, ButtonLogin, ButtonText, InputStyle, InputTitle, InputView, LinkSignup, LinkText } from '../../styles';
 import { AuthContext } from '../../context/auth';
 import { initialState, AuthReducer } from '../../reducers/auth.reducer';
+import { NumberInputField, FormControl, Input, VStack } from 'native-base';
 
 const Signin = ({ navigation }) => {
     const [authState, dispatch] = useReducer(AuthReducer, initialState);
+    const [formData, setFormData] = useState({});
+    const [errors, setErrors] = useState({});
     const { signin, loadingAuth } = useContext(AuthContext);
 
     function onChangeState(type, value) {
@@ -16,19 +19,27 @@ const Signin = ({ navigation }) => {
     }
 
     function handleLogin() {
-        if (valitadeFields(authState.password) || valitadeFields(authState.email)) {
-            alert('Há campos vazios ou nao preenchidos corretamente');
-            return;
+        if (valitadeFields()) {
+            signin(formData.email, formData.password)
         }
-        signin(authState.email, authState.password)
+
 
     }
 
-    function valitadeFields(text) {
+    function valitadeFields() {
+        if (formData.email === undefined || formData.email === '') {
+            setErrors({ email: 'email required' })
+            return false;
+        }
+        if (formData.password === undefined || formData.password === '') {
+            setErrors({ password: 'Campo senha não esta preenchido' })
+            return false;
+        }
         // console.log(text.match(/^[\t]+|[ \t]+$/))
-
-        return text.match(/^[ \t]+$/) !== null || text === "" ? true : false
+        return true
     }
+
+
     return (
         <Background>
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -45,31 +56,40 @@ const Signin = ({ navigation }) => {
                         />
                     </ViewLogo>
                     <ViewContents>
+
                         <InputView>
-                            <InputTitle>Email:</InputTitle>
-                            <InputStyle>
+                            <FormControl isInvalid={'email' in errors}>
+                                <VStack>
+                                    <FormControl.Label>
+                                        Email
+                                    </FormControl.Label>
+                                </VStack>
                                 <Input
+                                    w={'full'}
                                     placeholderTextColor={"#fff"}
                                     placeholder="exemplo@email.com"
-                                    value={authState.email}
                                     keyboardType="email-address"
-                                    onChangeText={(text) => onChangeState('setEmail', text)}
+                                    onChangeText={(text) => setFormData({ ...formData, email: text })}
                                 />
+                                {'email' in errors && <FormControl.ErrorMessage>{errors.email}</FormControl.ErrorMessage>}
 
-                            </InputStyle>
-
-                            <InputTitle>Senha:</InputTitle>
-                            <InputStyle>
-
+                            </FormControl>
+                            <FormControl mt='6' isInvalid={'password' in errors}>
+                                <VStack>
+                                    <FormControl.Label>
+                                        Password
+                                    </FormControl.Label>
+                                </VStack>
                                 <Input
+                                    w={'full'}
                                     placeholderTextColor={"#fff"}
                                     placeholder="Informe sua senha..."
-                                    value={authState.password}
                                     keyboardType="numeric"
-                                    onChangeText={(text) => onChangeState('setPassword', text)}
+                                    onChangeText={(text) => setFormData({ ...formData, password: text })}
                                     secureTextEntry={true}
                                 />
-                            </InputStyle>
+                                {'password' in errors && <FormControl.ErrorMessage>{errors.password}</FormControl.ErrorMessage>}
+                            </FormControl>
 
                         </InputView>
 
