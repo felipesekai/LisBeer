@@ -12,26 +12,29 @@ const AuthProvider = ({ children }) => {
     const [authToken, setAuthToken] = useState({});
     const [loadingAuth, setLoadingAuth] = useState(false);
 
-    // useEffect(() => {
-    //         async function getUser(){
-    //             await AsyncStorage.getItem('USER').then((user) => {
-    //                 setUser(JSON.parse(user));
-    //             })
-    //         }
-    //
-    //         getUser();
-    // }, [])
+    useEffect(() => {
+        async function getUser() {
+            await AsyncStorage.getItem('USER').then((user) => {
+                setUser(JSON.parse(user));
+            })
+        }
+
+        getUser();
+    }, [])
 
     async function signin(email, password) {
         setLoadingAuth(true);
         await SignIn(email, password).then((response) => {
             const authHeader = response.headers
-
+            console.log('entrou no login')
             setAuthToken(authHeader.authorization);
+
 
             getMe(authHeader.authorization).then((user) => {
                 console.log(user.data)
-                setUser(user.data)
+                saveUser(user.data);
+            }).catch((error) => {
+                alert(error.message)
             })
         }).finally(() => {
             setLoadingAuth(false);
@@ -69,7 +72,15 @@ const AuthProvider = ({ children }) => {
         await AsyncStorage.removeItem("USER");
     }
     return (
-        <AuthContext.Provider value={{ signin, signup, signOut, setLoadingAuth, loadingAuth, user, setUser, authToken }}>
+        <AuthContext.Provider value={{
+            signin,
+            signup,
+            signOut,
+            setLoadingAuth,
+            setUser,
+            loadingAuth, user,
+            authToken
+        }}>
             {children}
         </AuthContext.Provider>
     );

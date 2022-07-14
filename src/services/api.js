@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useQuery } from 'react-query';
-import base64 from 'react-native-base64';
+// import { useQuery } from 'react-query';
+// import base64 from 'react-native-base64';
 
 
 const api = axios.create({
@@ -23,7 +23,13 @@ export const getAllStore = auth => api.get(`stores`, {
         "authorization": auth
     }
 });
-export const SignIn = (email, password) => api.post(`users/signin`, JSON.stringify({ email, password }));
+export const SignIn = (email, password) => api.post(`users/signin`, JSON.stringify({ email: email, password: password }),
+    {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+);
 
 export const SignUp = (user) => api.post(`users/signup`, JSON.stringify(user),
     {
