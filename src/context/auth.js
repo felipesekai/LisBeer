@@ -12,15 +12,15 @@ const AuthProvider = ({ children }) => {
     const [authToken, setAuthToken] = useState({});
     const [loadingAuth, setLoadingAuth] = useState(false);
 
-    useEffect(() => {
-        async function getUser() {
-            await AsyncStorage.getItem('USER').then((user) => {
-                setUser(JSON.parse(user));
-            })
-        }
+    // useEffect(() => {
+    //     async function getUser() {
+    //         await AsyncStorage.getItem('USER').then((user) => {
+    //             setUser(JSON.parse(user));
+    //         })
+    //     }
 
-        getUser();
-    }, [])
+    //     getUser();
+    // }, [])
 
     async function signin(email, password) {
         setLoadingAuth(true);

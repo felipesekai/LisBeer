@@ -31,11 +31,12 @@ top: 0;
 `;
 
 export const Card = styled.View`
-/* height: 80%; */
+height: 100%;
 width: 100%;
+/* background-color: ${props => props.theme.secondaryColor}; */
 /* box-shadow: 1px 3px 1px ${Platform.OS === 'ios' ? 'rgba(0,0,0,0.28)' : "#000"};
 elevation: 5;
-background-color: ${props => props.theme.primaryColor};
+
 border-top-left-radius: 25px;
 border-top-right-radius: 25px;*/
 /* justify-content: space-between; */

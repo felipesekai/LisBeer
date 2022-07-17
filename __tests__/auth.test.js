@@ -4,19 +4,27 @@ describe('test Autentication login', () => {
     it('should that login when email and pass correctly', () => {
         const email = 'sekai@sekai.com'
         const password = '123'
-        var ok = 0
+        var ok = {}
+        const _user = { username: 'sekai', email: email, }
         SignIn(email, password)
-            .then(() => {
-                ok = 201
-                expect(ok).toBe(201)
+            .then((response) => {
+
+                const headers = response.headers
+                getMe(headers.authorization).then((user) => {
+                    ok = user.data
+
+                })
+
             })
             .catch(err => {
-                ok = 403
+                ok = { erro: 403 }
             })
             .finally(() => {
-                expect(ok).toBe(201)
+                expect(ok).toMatchObject(_user)
             })
     });
+
+
 
     it('should that signup is not successful', () => {
         const user = {
