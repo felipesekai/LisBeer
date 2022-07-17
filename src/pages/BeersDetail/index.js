@@ -18,13 +18,9 @@ const BeersDetail = ({ visible, onClose, data, }) => {
   return (
     <Center flex={1} px="5">
 
-
       <Actionsheet isOpen={visible} onClose={onClose}
         h='full'
       >
-
-
-
         {data &&
           <Card>
             <Image
@@ -58,14 +54,8 @@ const BeersDetail = ({ visible, onClose, data, }) => {
 
       </Actionsheet>
 
-
-
     </Center>
-    // <Modal animationType='slide' visible={visible} onRequestClose={() => onClose()}>
 
-
-
-    // </Modal>
   );
 }
 
