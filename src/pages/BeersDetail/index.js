@@ -5,7 +5,7 @@ import { ButtonBack, Card, Container, Header, HeaderBeersView, ItemImg, ItemName
 import { useTheme } from 'styled-components';
 import { getStoreById } from '../../services/api';
 import StoreDetails from './StoreDetails';
-import { Actionsheet, Center, Image, ScrollView } from 'native-base'
+import { Actionsheet, Center, Image, ScrollView, VStack } from 'native-base'
 const BeersDetail = ({ visible, onClose, data, }) => {
 
   const theme = useTheme();
@@ -19,21 +19,19 @@ const BeersDetail = ({ visible, onClose, data, }) => {
     <Center flex={1} px="5">
 
       <Actionsheet isOpen={visible} onClose={onClose}
-
+        h='full'
       >
         {data &&
-
-          <Image
-            flex={1}
-            w={'100%'}
-            h={'30%'}
-            source={{ uri: data.photoUrl }}
-            resizeMode='contain'
-            alt="Alternate Text"
-          />}
-        {data &&
-          <Actionsheet.Content bg={'primary.600'} justifyContent='space-between'>
-            <Card>
+          <Card>
+            <Image
+              mt={5}
+              w={'100%'}
+              h={'25%'}
+              source={{ uri: data.photoUrl }}
+              resizeMode='contain'
+              alt="Alternate Text"
+            />
+            <Actionsheet.Content bg={'primary.600'} width={'full'}>
 
               <HeaderBeersView>
                 <TitleRateViewRow>
@@ -49,18 +47,15 @@ const BeersDetail = ({ visible, onClose, data, }) => {
 
               <StoreDetails id={data.storeId} itemCategories={data.categories} beerId={data.id} />
 
-            </Card>
+            </Actionsheet.Content>
+          </Card>
 
-
-          </Actionsheet.Content>
         }
+
       </Actionsheet>
+
     </Center>
-    // <Modal animationType='slide' visible={visible} onRequestClose={() => onClose()}>
 
-
-
-    // </Modal>
   );
 }
 

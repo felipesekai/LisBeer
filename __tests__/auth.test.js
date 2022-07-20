@@ -1,22 +1,31 @@
 import { SignIn, SignUp, getMe } from '../src/services/api';
 
 describe('test Autentication login', () => {
-    it('should that login when email and pass correctly', () => {
+    it('should that login when email and pass correctly', async () => {
         const email = 'sekai@sekai.com'
         const password = '123'
-        var ok = 0
-        SignIn(email, password)
-            .then(() => {
-                ok = 201
-                expect(ok).toBe(201)
+        var ok = {}
+        var headers
+        const _user = { username: 'sekai', email: email, }
+        await SignIn(email, password)
+            .then(async (response) => {
+
+                headers = response.headers
+                await getMe(headers.authorization).then((user) => {
+                    ok = user.data
+
+
+                })
             })
             .catch(err => {
-                ok = 403
+                ok = { erro: 403 }
             })
             .finally(() => {
-                expect(ok).toBe(201)
+                expect(ok).toMatchObject(_user)
             })
     });
+
+
 
     it('should that signup is not successful', () => {
         const user = {
