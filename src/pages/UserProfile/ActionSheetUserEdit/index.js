@@ -8,7 +8,7 @@ import { useTheme } from 'styled-components/native';
 import { AuthContext } from '../../../context/auth';
 
 
-const ASUserEdit = ({ open, close, _setChange }) => {
+const ActionSheetUserEdit = ({ open, close, _setChange }) => {
     const theme = useTheme();
 
     const { user } = useContext(AuthContext);
@@ -72,4 +72,4 @@ const ASUserEdit = ({ open, close, _setChange }) => {
 
 
 
-export default ASUserEdit;
+export default ActionSheetUserEdit;

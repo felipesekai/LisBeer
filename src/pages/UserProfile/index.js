@@ -4,7 +4,7 @@ import { Background, ButtonLogin, ButtonText, Container } from '../../styles';
 import { AuthContext } from '../../context/auth';
 import { Text, Image, Avatar, VStack, Center, Heading, Button, useDisclose, Alert, HStack } from 'native-base';
 import MateiralIcons from '@expo/vector-icons/MaterialIcons';
-import ASUserEdit from './ASuserEdit';
+import ActionSheetUserEdit from './ActionSheetUserEdit';
 import AlertSuccess from '../../components/AlertSuccess';
 
 
@@ -35,7 +35,7 @@ const UserProfile = () => {
                     rounded='full'
                 >
                     <MateiralIcons name="edit" size={25} />
-                    <ASUserEdit _setChange={(bool) => setChange(bool)} open={isOpen} close={onClose} />
+                    <ActionSheetUserEdit _setChange={(bool) => setChange(bool)} open={isOpen} close={onClose} />
                 </Button>
 
                 <Avatar alignSelf="center" size="2xl" source={{
