@@ -1,20 +1,21 @@
 import { SignIn, SignUp, getMe } from '../src/services/api';
 
 describe('test Autentication login', () => {
-    it('should that login when email and pass correctly', () => {
+    it('should that login when email and pass correctly', async () => {
         const email = 'sekai@sekai.com'
         const password = '123'
         var ok = {}
+        var headers
         const _user = { username: 'sekai', email: email, }
-        SignIn(email, password)
-            .then((response) => {
+        await SignIn(email, password)
+            .then(async (response) => {
 
-                const headers = response.headers
-                getMe(headers.authorization).then((user) => {
+                headers = response.headers
+                await getMe(headers.authorization).then((user) => {
                     ok = user.data
 
-                })
 
+                })
             })
             .catch(err => {
                 ok = { erro: 403 }
